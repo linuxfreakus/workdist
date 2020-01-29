@@ -1,0 +1,4 @@
+include ':common',
+        ':api'
+
+rootProject.name = 'workdist'

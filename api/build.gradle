@@ -1,0 +1,14 @@
+project.apply plugin: 'com.google.cloud.tools.jib'
+
+dependencies {
+    implementation project(':common')
+}
+
+jib {
+    // Java 11 LTS release
+    from.image = 'gcr.io/distroless/java@sha256:0ce06c40e99e0dce26bdbcec30afe7a890a57bbd250777bd31ff2d1b798c7809'
+
+    // will contain spring boot executable jar
+    to.image = 'com.example/workdist-api'
+}
+

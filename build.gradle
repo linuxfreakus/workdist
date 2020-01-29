@@ -1,0 +1,38 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.3.RELEASE' apply false
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE' apply false
+    id 'io.freefair.lombok' version '4.1.6' apply false
+    id 'com.google.cloud.tools.jib' version '1.8.0' apply false
+}
+
+allprojects {
+    group = 'com.example.workdist'
+    version = '1.0-SNAPSHOT'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'io.freefair.lombok'
+
+    sourceCompatibility = JavaVersion.VERSION_11
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation group: 'org.springframework.boot', name: 'spring-boot-dependencies', version: '2.2.3.RELEASE'
+        implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.2.3.RELEASE'
+        implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.2.3.RELEASE'
+        implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.2.3.RELEASE'
+        implementation group: 'com.google.guava', name: 'guava', version: '28.2-jre'
+        implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-guava', version: '2.9.9'
+        runtimeOnly group: 'com.impossibl.pgjdbc-ng', name: 'pgjdbc-ng', version: '0.8.3'
+        runtimeOnly group: 'org.flywaydb', name: 'flyway-core', version: '6.1.4'
+        testImplementation(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.2.3.RELEASE') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+    }
+}
